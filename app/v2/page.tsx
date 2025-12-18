@@ -17,7 +17,7 @@ import { useCallback, useMemo, useRef, useState } from "react";
 import { isToday, sub } from "date-fns";
 import moment from "moment-timezone";
 import { twJoin } from "tailwind-merge";
-import { FlightMovement, data, gates } from "../data";
+import { gates } from "../data";
 import { events } from "../events";
 
 // import "@mobiscroll/react/dist/css/mobiscroll.min.css";
@@ -69,12 +69,6 @@ export default function GatesPage() {
     null
   );
   const [tooltipAnchor, setTooltipAnchor] = useState<HTMLElement | undefined>();
-
-  const flightMovementsMap = useMemo(() => {
-    const flightMovementsMap = mergeFlightMovements(data, []);
-
-    return flightMovementsMap;
-  }, []);
 
   const resources = useMemo<MbscResource[]>(() => {
     const resources: MbscResource[] = [
@@ -185,64 +179,25 @@ export default function GatesPage() {
     );
   }, []);
 
-  const handleEventUpdate = useCallback(
-    (args: MbscEventUpdateEvent) => {
-      const event: MbscCalendarEvent = args.event;
-      if (!event.flight_leg_id) {
-        return;
-      }
+  const handleEventUpdate = useCallback((args: MbscEventUpdateEvent) => {
+    const event: MbscCalendarEvent = args.event;
+    if (!event.flight_leg_id) {
+      return;
+    }
 
-      const flightMovement = flightMovementsMap.get(event.flight_leg_id);
-      const gate_allocation_id = event.id;
-      const resource = event.resource;
-
-      // TODO: Handle errors properly
-      if (!resource || typeof resource !== "string") {
-        alert("Resource not found. Please refresh the page.");
-        return;
-      }
-
-      if (!flightMovement) {
-        alert("Flight movement not found. Please refresh the page.");
-        return;
-      }
-
-      if (flightMovement.flight_nature === "arrival") {
-        alert("Something went wrong. Please contact support.");
-        return;
-      }
-
-      const gateAllocation = flightMovement.gate_allocations.find(
-        (allocation) => allocation.id === gate_allocation_id
-      );
-
-      if (!gateAllocation) {
-        alert("Gate allocation not found. Please refresh the page.");
-        return;
-      }
-
-      console.log("updated");
-    },
-    [flightMovementsMap]
-  );
+    console.log("updated");
+  }, []);
 
   /* Tooltip event handlers */
-  const openTooltip = useCallback(
-    (args: MbscEventClickEvent) => {
-      const event: MbscCalendarEvent = args.event;
-      if (!event.flight_leg_id) {
-        return;
-      }
+  const openTooltip = useCallback((args: MbscEventClickEvent) => {
+    const event: MbscCalendarEvent = args.event;
+    if (!event.flight_leg_id) {
+      return;
+    }
 
-      if (!flightMovementsMap.has(event.flight_leg_id)) {
-        return;
-      }
-
-      setTooltipFlightLegId(event.flight_leg_id);
-      setTooltipAnchor(args.domEvent.target.closest(".mbsc-schedule-event"));
-    },
-    [flightMovementsMap]
-  );
+    setTooltipFlightLegId(event.flight_leg_id);
+    setTooltipAnchor(args.domEvent.target.closest(".mbsc-schedule-event"));
+  }, []);
 
   const handleEventClick = useCallback(
     (args: MbscEventClickEvent) => {
@@ -257,32 +212,25 @@ export default function GatesPage() {
     [openTooltip]
   );
 
-  const handleEventDoubleClick = useCallback(
-    (args: MbscEventClickEvent) => {
-      // Clear the timer if it exists to prevent tooltip from opening
-      if (timer.current) {
-        clearTimeout(timer.current);
-        timer.current = undefined;
-      }
+  const handleEventDoubleClick = useCallback((args: MbscEventClickEvent) => {
+    // Clear the timer if it exists to prevent tooltip from opening
+    if (timer.current) {
+      clearTimeout(timer.current);
+      timer.current = undefined;
+    }
 
-      const event: MbscCalendarEvent = args.event;
-      if (!event.flight_leg_id) {
-        return;
-      }
+    const event: MbscCalendarEvent = args.event;
+    if (!event.flight_leg_id) {
+      return;
+    }
 
-      if (!flightMovementsMap.has(event.flight_leg_id)) {
-        return;
-      }
+    // Close the tooltip
+    setTooltipFlightLegId(null);
+    setTooltipAnchor(undefined);
 
-      // Close the tooltip
-      setTooltipFlightLegId(null);
-      setTooltipAnchor(undefined);
-
-      // Open the edit sheet
-      // setSelectedFlightLegId(event.flight_leg_id);
-    },
-    [flightMovementsMap]
-  );
+    // Open the edit sheet
+    // setSelectedFlightLegId(event.flight_leg_id);
+  }, []);
 
   const handleTooltipClose = useCallback(() => {
     setTooltipFlightLegId(null);
@@ -362,28 +310,4 @@ export default function GatesPage() {
       )}
     </div>
   );
-}
-
-export function mergeFlightMovements(
-  flightMovements: FlightMovement[] | undefined,
-  modifiedMovements: FlightMovement[]
-) {
-  const flightMovementsMap = new Map<string, FlightMovement>();
-  if (!flightMovements) return flightMovementsMap;
-
-  for (let i = 0; i < flightMovements.length; i++) {
-    flightMovementsMap.set(
-      flightMovements[i].flight_leg_id,
-      flightMovements[i]
-    );
-  }
-
-  for (let i = 0; i < modifiedMovements.length; i++) {
-    flightMovementsMap.set(
-      modifiedMovements[i].flight_leg_id,
-      modifiedMovements[i]
-    );
-  }
-
-  return flightMovementsMap;
 }
