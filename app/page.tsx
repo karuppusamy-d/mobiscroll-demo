@@ -485,7 +485,7 @@ export default function GatesPage() {
   }, []);
 
   return (
-    <div className="flex h-full flex-col">
+    <div className="flex h-screen flex-col dark">
       <Eventcalendar
         selectedDate={selectedDate}
         view={view}
@@ -514,14 +514,8 @@ export default function GatesPage() {
 
       {/* Footer */}
       <div className="flex h-8 items-center justify-between px-6 text-xs">
-        <div>{/* Chennai International Airport */}</div>
+        <div>{/* */}</div>
         <div className="flex items-center gap-3">
-          {/* <div>Pending changes: {present_changes.length}</div> */}
-          <div>
-            Allocations: {flightEvents.length - unallocatedEventsCount}/
-            {flightEvents.length}
-          </div>
-          {/* <div>Resources: 21/28</div> */}
           <div>
             <select
               value={zoomLevel}

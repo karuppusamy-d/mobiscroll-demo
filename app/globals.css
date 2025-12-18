@@ -20,6 +20,9 @@
     --foreground: #ededed;
   }
 }
+.dark {
+  color-scheme: dark;
+}
 
 body {
   background: var(--background);
