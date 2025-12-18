@@ -1,0 +1,185 @@
+@import "@mobiscroll/react/dist/css/mobiscroll.min.css";
+
+.mbsc-ios.mbsc-schedule-event-background {
+  @apply opacity-100;
+}
+
+.mbsc-timeline-resource-col {
+  width: 220px !important;
+}
+.mbsc-hide-header {
+  .mbsc-timeline-header-date {
+    display: none;
+  }
+
+  /* Hide timeline header  */
+  .mbsc-timeline-header-bg {
+    /* select all direct childs except 1st */
+    & > *:not(:first-child) {
+      display: none;
+    }
+  }
+}
+
+.mbsc-hide-scrollbar .mbsc-timeline-grid-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.mbsc-ios.mbsc-schedule-event-hover .mbsc-schedule-event-background {
+  @apply opacity-80;
+}
+
+.mbsc-ios.mbsc-schedule-event-active .mbsc-schedule-event-background {
+  @apply opacity-70;
+}
+
+.mbsc-ios-dark.mbsc-timeline-header-active {
+  @apply text-black;
+}
+
+/* Disable hover effects for events with .mbsc-event-fixed */
+.mbsc-event-fixed.mbsc-ios.mbsc-schedule-event-hover
+  .mbsc-schedule-event-background,
+.mbsc-event-fixed.mbsc-ios.mbsc-schedule-event-active
+  .mbsc-schedule-event-background {
+  @apply opacity-100;
+}
+
+/* Blocked event styles */
+.mbsc-event-blocked .mbsc-schedule-event-background {
+  background-image: repeating-linear-gradient(
+    120deg,
+    #bf8600,
+    #bf8600 10px,
+    rgba(255, 177, 1, 0.2) 10px,
+    #bf860033 20px
+  );
+}
+.mbsc-event-blocked .mbsc-ios.mbsc-schedule-event-title {
+  @apply text-white;
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.8);
+}
+
+.mbsc-ios.mbsc-schedule-event-dragging .mbsc-schedule-event-background {
+  @apply border border-white/50 opacity-100;
+}
+
+.mbsc-ios.mbsc-event-unassigned .mbsc-ios.mbsc-schedule-event-title {
+  @apply text-black;
+}
+
+.mbsc-timeline-column,
+.mbsc-timeline-header-column {
+  @apply w-[2.3125em];
+}
+
+.mbsc-timeline-row {
+  @apply h-[2.3125rem];
+}
+
+/* Remove the extra bottom spacing (gutter) of the row */
+.mbsc-timeline-row-gutter {
+  height: 6px;
+}
+
+.mbsc-timeline-events {
+  height: inherit;
+}
+
+.mbsc-ios-dark.mbsc-calendar {
+  @apply bg-[#131313];
+}
+
+.mbsc-ios-dark.mbsc-schedule-all-day-item:after,
+.mbsc-ios-dark.mbsc-schedule-column,
+.mbsc-ios-dark.mbsc-schedule-item,
+.mbsc-ios-dark.mbsc-schedule-resource,
+.mbsc-ios-dark.mbsc-schedule-resource-group,
+.mbsc-ios-dark.mbsc-timeline-column,
+.mbsc-ios-dark.mbsc-timeline-day:after,
+.mbsc-ios-dark.mbsc-timeline-footer,
+.mbsc-ios-dark.mbsc-timeline-footer-column,
+.mbsc-ios-dark.mbsc-timeline-footer-date,
+.mbsc-ios-dark.mbsc-timeline-footer-week,
+.mbsc-ios-dark.mbsc-timeline-header,
+.mbsc-ios-dark.mbsc-timeline-header-column,
+.mbsc-ios-dark.mbsc-timeline-header-date,
+.mbsc-ios-dark.mbsc-timeline-header-month,
+.mbsc-ios-dark.mbsc-timeline-header-week,
+.mbsc-ios-dark.mbsc-timeline-resource,
+.mbsc-ios-dark.mbsc-timeline-resource-footer-cont,
+.mbsc-ios-dark.mbsc-timeline-resource-header-cont,
+.mbsc-ios-dark.mbsc-timeline-row,
+.mbsc-ios-dark.mbsc-timeline-row-date,
+.mbsc-ios-dark.mbsc-timeline-row-group:after,
+.mbsc-ios-dark.mbsc-timeline-sidebar-footer-cont,
+.mbsc-ios-dark.mbsc-timeline-sidebar-header-cont,
+.mbsc-ios-dark.mbsc-timeline-sidebar-resource,
+.mbsc-ios-dark.mbsc-timeline-slot-header,
+.mbsc-ios-dark.mbsc-timeline-slots {
+  @apply border-[#ffffff12];
+}
+
+/* Hide border bottom */
+.mbsc-timeline-header-column,
+.mbsc-timeline-header-date,
+.mbsc-timeline-header-month,
+.mbsc-timeline-header-week,
+.mbsc-timeline-resource,
+.mbsc-timeline-resource-header-cont,
+.mbsc-timeline-row,
+.mbsc-timeline-row-date,
+.mbsc-timeline-row-group:after,
+.mbsc-timeline-sidebar-header-cont,
+.mbsc-timeline-sidebar-resource {
+  @apply border-none;
+}
+
+/* Show overflowed time */
+.mbsc-timeline-header-column,
+.mbsc-timeline-header-time {
+  @apply overflow-visible;
+}
+
+.mbsc-ios.mbsc-timeline-resources {
+  /* @apply shadow-border; */
+  @apply shadow-[-25px_0px_40px_30px] shadow-black;
+}
+
+.mbsc-timeline-resource.mbsc-ltr {
+  @apply border-none;
+}
+
+/* Parent resource styles */
+.mbsc-timeline-parent {
+  /* overrides .mbsc-timeline-events */
+  height: 57px !important;
+  align-items: center;
+}
+
+.mbsc-timeline-parent .mbsc-timeline-event {
+  /* event */
+  @apply inset-y-0 p-0;
+}
+
+.mbsc-schedule-event-background-has-parent {
+  /* event backgorund */
+  @apply inset-0 my-3 !rounded-none;
+}
+
+.mbsc-schedule-event-inner-has-parent {
+  /* event text */
+  @apply inset-0 !flex h-full items-center justify-center;
+}
+
+/* Remove the extra spacing from the parent */
+/*
+.mbsc-timeline-parent {
+  .mbsc-schedule-event-background {
+    @apply m-0;
+  }
+  .mbsc-schedule-event {
+    @apply h-[37px];
+  }
+}
+*/
