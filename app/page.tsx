@@ -62,7 +62,7 @@ function getTimeStepForZoom(zoomLevel: ZoomLevel) {
 export default function GatesPage() {
   const [startTime] = useState(new Date("2025-12-18T00:00:00").getTime());
   const [endTime] = useState(new Date("2025-12-18T23:59:59").getTime());
-  const [zoomLevel, setZoomLevel] = useState<ZoomLevel>("100");
+  const [zoomLevel, setZoomLevel] = useState<ZoomLevel>("125");
 
   const [time, setTime] = useState(new Date().getTime());
   useEffect(() => {
