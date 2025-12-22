@@ -20,7 +20,7 @@ import { twJoin } from "tailwind-merge";
 import { FlightMovement, data, gates } from "../data";
 
 // import "@mobiscroll/react/dist/css/mobiscroll.min.css";
-import "./mobiscroll.css";
+import "../mobiscroll.css";
 
 type GateAllocation = {
   id: string;
@@ -185,7 +185,7 @@ export default function GatesPage() {
     const events: MbscCalendarEvent[] = [];
     const now = time;
 
-    let unallocatedEventsCount = 0;
+    // let unallocatedEventsCount = 0;
 
     for (const allocation of gateAllocations) {
       const gate_id = allocation.gate_id ?? "unallocated";
@@ -199,7 +199,7 @@ export default function GatesPage() {
       }
       if (gate_id === "unallocated") {
         color = undefined;
-        unallocatedEventsCount++;
+        // unallocatedEventsCount++;
       }
 
       events.push({
