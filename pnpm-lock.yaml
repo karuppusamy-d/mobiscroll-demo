@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@mobiscroll/react':
-        specifier: ^5.35.2
-        version: 5.35.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: 5.34.0
+        version: 5.34.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
@@ -347,8 +347,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@mobiscroll/react@5.35.2':
-    resolution: {integrity: sha512-pNOhpPpIH9CIrv7GqtO1PfzyQd1nRcjLbkC3gIRQmNpQtfvVWNaTnHCdUgiWcW3i5N2TZ/UF+mq2jj8Mthwu9A==}
+  '@mobiscroll/react@5.34.0':
+    resolution: {integrity: sha512-lTyweJfTJPhMw35/rafZe7op8dkfk92nvcuF0av4/yP7jJ8xQ79S+/bzjMhOkjyb8xBRpzKYd8Wrkm+BYcZayA==}
     peerDependencies:
       react: '>=15.3.0'
       react-dom: '>=15.3.0'
@@ -2214,7 +2214,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@mobiscroll/react@5.35.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+  '@mobiscroll/react@5.34.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
